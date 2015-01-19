@@ -97,9 +97,15 @@ copy_templates()
 # Replace placeholders
 replace_placeholders()
 {
- find $OUTPUT_DIR -type f -exec sed -i '.old' "s/BOXNAME/$BOXNAME/g" {} \;
- find $OUTPUT_DIR -type f -exec sed -i '.old' "s/IPADDRESS/$IPADDRESS/g" {} \;
- find $OUTPUT_DIR -type f -exec sed -i '.old' "s/MEMORY/$MEMORY/g" {} \;
+ replace_placeholder_byname "BOXNAME" $BOXNAME
+ replace_placeholder_byname "IPADDRESS" $IPADDRESS
+ replace_placeholder_byname "MEMORY" $MEMORY
+}
+
+replace_placeholder_byname()
+{
+ find $OUTPUT_DIR -type f -exec sed -i '.old' "s/$1/$2/g" {} \;
+ find $OUTPUT_DIR -type f -name *.old -exec rm -f {} \;
 }
 
 # Support functions
