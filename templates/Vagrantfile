@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "BOXNAME" do |BOXNAME|
         BOXNAME.vm.network "private_network", ip: "IPADDRESS"
         BOXNAME.vm.provision "puppet" do |puppet|
-          puppet.module_path = "modules"
+          puppet.module_path = "manifests"
           puppet.manifest_file = "init.pp"
         end
     end
